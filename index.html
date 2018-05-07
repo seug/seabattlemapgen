@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+<title>ships</title>
+<script src="jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<script language="javascript">
+$.ajaxSetup({ cache: false });
+$.get(
+  "./generator.php",
+  {
+  },
+  onAjaxSuccess
+);
+ 
+function onAjaxSuccess(data)
+{
+  console.log(data.split('\n'));
+  a = data.split('\n');
+  
+    var body = document.getElementsByTagName('body')[0];
+    var tbl = document.createElement('table');
+    var tbdy = document.createElement('tbody');
+    for (var i = 0; i < 10; i++) {
+        var tr = document.createElement('tr');
+        for (var j = 0; j < 10; j++) {
+            var td = document.createElement('td');
+            td.appendChild(document.createTextNode('\u0020'))
+            if(a[i][j]==1) td.setAttribute("style", "background-color: blue;");
+            tr.appendChild(td)
+        }
+        tbdy.appendChild(tr);
+    }
+    tbl.appendChild(tbdy);
+    body.appendChild(tbl)  
+  
+}  
+
+</script>
+</body>
+</html>
